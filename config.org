@@ -46,10 +46,9 @@ Use-package has been shipped with emacs since 29.
 #+end_src
 ** Theme
 #+begin_src emacs-lisp
-  (use-package material-theme
+  (use-package modus-themes
     :config
-    (load-theme 'material t)
-    (enable-theme 'material))
+    (modus-themes-toggle))
 #+end_src
 
 * Development

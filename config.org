@@ -65,6 +65,11 @@ Use-package has been shipped with emacs since 29.
 #+begin_src emacs-lisp
   (use-package rust-mode)
 #+end_src
+** Version Control
+*** magit
+#+begin_src emacs-lisp
+  (use-package magit)
+#+end_src
 
 * Knowledge Management
 ** Markdown

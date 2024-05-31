@@ -1,0 +1,74 @@
+* Lexical Binding
+#+begin_src emacs-lisp
+  ;; -*- lexical-binding: t; -*-
+#+end_src
+
+* Package Management
+** Straight.el
+https://github.com/radian-software/straight.el?tab=readme-ov-file#getting-started
+#+begin_src emacs-lisp
+  (defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+#+end_src
+** Use-package
+Use-package has been shipped with emacs since 29.
+#+begin_src emacs-lisp
+  (setq straight-use-package-by-default t)
+#+end_src
+
+* UI
+** Basic
+#+begin_src emacs-lisp
+  (let ((disable-mode-list '(scroll-bar-mode tool-bar-mode menu-bar-mode))
+	(enable-mode-list '(global-display-line-numbers-mode)))
+    (mapcar (lambda (mode-func)
+	      (funcall mode-func -1))
+	    disable-mode-list)
+    (mapcar (lambda (mode-func)
+	      (funcall mode-func 1))
+	    enable-mode-list)
+    (setq inhibit-startup-screen t)
+    (setq inhibit-startup-message t)
+    (toggle-frame-maximized))
+#+end_src
+** Theme
+#+begin_src emacs-lisp
+  (use-package material-theme
+    :config
+    (load-theme 'material t)
+    (enable-theme 'material))
+#+end_src
+
+* Development
+** Language
+*** zig
+#+begin_src emacs-lisp
+  (use-package zig-mode)
+#+end_src
+*** nix-mode
+#+begin_src emacs-lisp
+  (use-package nix-mode)
+#+end_src
+*** rust-mode
+#+begin_src emacs-lisp
+  (use-package rust-mode)
+#+end_src
+
+* Knowledge Management
+** Markdown
+#+begin_src emacs-lisp
+  (use-package markdown-mode)
+#+end_src

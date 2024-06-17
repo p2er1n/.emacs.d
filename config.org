@@ -4,30 +4,9 @@
 #+end_src
 
 * Package Management
-** Straight.el
-https://github.com/radian-software/straight.el?tab=readme-ov-file#getting-started
-#+begin_src emacs-lisp
-  (defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name
-        "straight/repos/straight.el/bootstrap.el"
-        (or (bound-and-true-p straight-base-dir)
-            user-emacs-directory)))
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-#+end_src
-** Use-package
-Use-package has been shipped with emacs since 29.
-#+begin_src emacs-lisp
-  (setq straight-use-package-by-default t)
-#+end_src
+Has been moved outside of the literate config file due to org-mode mismatching version.
+Specifically, org-roam uses more recent org-mode, but I use old org-mode provided org-babel-load-file function first.
+And I install org-roam package using straight.el and use-package, so their setup are moved outside along with org-roam's.
 
 * UI
 ** Basic
@@ -75,4 +54,28 @@ Use-package has been shipped with emacs since 29.
 ** Markdown
 #+begin_src emacs-lisp
   (use-package markdown-mode)
+#+end_src
+** org-roam
+Because of mismatching org-mode version, it has been moved outside of literate config file.
+
+** gptel
+It's a simple and useful LLMs client for Emacs supporting many LLMs local and remote.
+#+begin_src emacs-lisp
+  (use-package gptel
+    :config
+    (setq
+     gptel-model "phi3"
+     gptel-backend (gptel-make-ollama "Ollama"
+  				    :host "localhost:11434"
+  				    :stream t
+  				    :models '("moondream" "phi3"))))
+#+end_src
+
+** go-translate
+It's a translation tool.
+#+begin_src emacs-lisp
+  (use-package go-translate
+    :config
+    (setq gt-langs '(en zh))
+    (setq gt-default-translator (gt-translator :engines (gt-google-engine))))
 #+end_src

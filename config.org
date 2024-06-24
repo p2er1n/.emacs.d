@@ -36,14 +36,20 @@ And I install org-roam package using straight.el and use-package, so their setup
 #+begin_src emacs-lisp
   (use-package zig-mode)
 #+end_src
-*** nix-mode
+*** nix
 #+begin_src emacs-lisp
   (use-package nix-mode)
 #+end_src
-*** rust-mode
+*** rust
 #+begin_src emacs-lisp
   (use-package rust-mode)
 #+end_src
+
+*** vue
+#+begin_src emacs-lisp
+  (use-package vue-mode)
+#+end_src
+#+begin
 ** Version Control
 *** magit
 #+begin_src emacs-lisp

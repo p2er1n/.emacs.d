@@ -29,7 +29,11 @@ And I install org-roam package using straight.el and use-package, so their setup
     :config
     (modus-themes-toggle))
 #+end_src
-
+** Enhanced
+*** popup
+#+begin_src emacs-lisp
+  (use-package popup)
+#+end_src
 * Development
 ** Language
 *** zig
@@ -54,6 +58,37 @@ And I install org-roam package using straight.el and use-package, so their setup
 *** magit
 #+begin_src emacs-lisp
   (use-package magit)
+#+end_src
+** Input Method
+*** pyim
+**** pyim
+#+begin_src emacs-lisp
+  (use-package pyim
+    :config
+    (setq pyim-page-tooltip 'popup)
+
+    ;; 将 Emacs 默认输入法设置为 pyim.
+    (setq default-input-method "pyim")
+
+    ;; 显示 5 个候选词。
+    (setq pyim-page-length 5)
+    ;; 设置 pyim 默认使用的输入法策略，我使用全拼。
+    (pyim-default-scheme 'quanpin)
+    ;; (pyim-default-scheme 'wubi)
+    ;; (pyim-default-scheme 'cangjie)
+
+    ;; 设置 pyim 是否使用云拼音
+    (setq pyim-cloudim 'baidu)
+
+    ;; 开启代码搜索中文功能（比如拼音，五笔码等）
+    (pyim-isearch-mode 1))
+#+end_src
+
+**** pyim-basedict
+#+begin_src emacs-lisp
+  (use-package pyim-basedict
+    :config
+    (pyim-basedict-enable))
 #+end_src
 
 * Knowledge Management
